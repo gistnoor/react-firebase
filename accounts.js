@@ -1,14 +1,22 @@
-var Firebase = require('firebase');
+var firebase = require('firebase');
 var crypto = require('crypto');
 
-var firebase = new Firebase('https://react-wiki-98708.firebaseio.com/');
-var users = firebase.child('users');
+var firebaseConfig = {
+    apiKey: "AIzaSyAyM5NGZ1-Rtz4sbYcNq2Ok7DxpuxHszzU ",
+    authDomain: "react-wiki-98708.firebaseapp.com",
+    databaseURL: "https://react-wiki-98708.firebaseio.com/",
+    storageBucket: "gs://react-wiki-98708.appspot.com"
+};
+
+firebase.initializeApp(firebaseConfig, 'user');
+
+// var users = firebase.child('users');
 
 function hash (password) {
     return crypto.createHash('sha512').update(password).digest('hex');
 }
 
-var router = require('express').Route();
+var router = require('express').Router();
 
 router.use(require('body-parser').json());
 router.use(require('cookie-parser')());
